@@ -102,7 +102,6 @@ for _ in range(num_figures):
                 print("Введите положительное число")
         figure = Triangle(base, height)
         figures.append(figure)
-        Triangle.display(figure)
     elif figure_type == "2":
         while True:
             try:
@@ -114,7 +113,6 @@ for _ in range(num_figures):
                 print("Введите положительное число")
         figure = Circle(radius)
         figures.append(figure)
-        Circle.display(figure)
     elif figure_type == "3":
         while True:
             try:
@@ -129,7 +127,6 @@ for _ in range(num_figures):
                 print("Введите положительное число")
         figure = Quadrilateral(side1, side2)
         figures.append(figure)
-        Quadrilateral.display(figure)
 
 # Сортировка фигур по площади
 figures.sort(key=lambda x: x.calculate_area())
