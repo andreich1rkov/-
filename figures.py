@@ -16,7 +16,7 @@ class Figure(ABC):
     def display(self):
         pass
 
-
+# Треугольник
 class Triangle(Figure):
     def __init__(self, base, height):
         self.base = base
@@ -36,7 +36,7 @@ class Triangle(Figure):
         print(f"Площадь: {self.calculate_area()}")
         print()
 
-
+# Круг
 class Circle(Figure):
     def __init__(self, radius):
         self.radius = radius
@@ -54,7 +54,7 @@ class Circle(Figure):
         print(f"Площадь: {self.calculate_area()}")
         print()
 
-
+# Четырёхугольник
 class Quadrilateral(Figure):
     def __init__(self, side1, side2):
         self.side1 = side1
@@ -74,32 +74,65 @@ class Quadrilateral(Figure):
         print(f"Площадь: {self.calculate_area()}")
         print()
 
+error = ValueError # Обработка ошибки
 
-num_figures = int(input("Сколько фигур нужно? "))
-
+while True:
+    try:
+        num_figures = int(input("Сколько фигур нужно? "))
+        if num_figures <= 0:
+            raise error
+        break
+    except error:
+        print("Введите положительное целое число")
 figures = []
 for _ in range(num_figures):
     figure_type = input("Введите тип фигуры (1 - треугольник, 2 - круг, 3 - четырехугольник): ")
     
     if figure_type == "1":
-        base = float(input("Введите основание треугольника: "))
-        height = float(input("Введите высоту треугольника: "))
+        while True:
+            try:
+                base = float(input("Введите основание треугольника: "))
+                if base <= 0:
+                    raise error
+                height = float(input("Введите высоту треугольника: "))
+                if height <= 0:
+                    raise error
+                break
+            except error:
+                print("Введите положительное число")
         figure = Triangle(base, height)
         figures.append(figure)
         Triangle.display(figure)
     elif figure_type == "2":
-        radius = float(input("Введите радиус круга: "))
+        while True:
+            try:
+                radius = float(input("Введите радиус круга: "))
+                if radius <= 0:
+                    raise error
+                break
+            except error:
+                print("Введите положительное число")
         figure = Circle(radius)
         figures.append(figure)
         Circle.display(figure)
     elif figure_type == "3":
-        side1 = float(input("Введите длину первой стороны четырехугольника: "))
-        side2 = float(input("Введите длину второй стороны четырехугольника: "))
+        while True:
+            try:
+                side1 = float(input("Введите длину первой стороны четырехугольника: "))
+                if side1 <= 0:
+                    raise error
+                side2 = float(input("Введите длину второй стороны четырехугольника: "))
+                if side2 <= 0:
+                    raise error
+                break
+            except error:
+                print("Введите положительное число")
         figure = Quadrilateral(side1, side2)
+        figures.append(figure)
         Quadrilateral.display(figure)
 
 # Сортировка фигур по площади
-figures.sort(key=lambda x: x.area())
+figures.sort(key=lambda x: x.calculate_area())
 
 # Создание таблицы и добавление заголовка
 table = PrettyTable()
@@ -107,7 +140,7 @@ table.field_names = ["Фигура", "Площадь"]
 
 # Добавление строк в таблицу
 for figure in figures:
-    table.add_row([type(figure).__name__, figure.area()])
+    table.add_row([type(figure).__name__, figure.calculate_area()])
 
 # Вывод таблицы
 print(table)
