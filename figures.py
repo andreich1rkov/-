@@ -1,182 +1,113 @@
-class Фигура:
-    def __init__(self):
-        pass
-
-    def вывести(self):
-        pass
-
-    def рассчитать_периметр(self):
-        pass
-
-    def рассчитать_площадь(self):
-        pass
-
-class Треугольник(Фигура):
-    def __init__(self, точка1, точка2, точка3):
-        self.точка1 = точка1
-        self.точка2 = точка2
-        self.точка3 = точка3
-
-    def вывести(self):
-        # Реализация вывода для треугольника
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра треугольника
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади треугольника
-        pass
-
-class Круг(Фигура):
-    def __init__(self, центр, радиус):
-        self.центр = центр
-        self.радиус = радиус
-
-    def вывести(self):
-        # Реализация вывода для круга
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра круга
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади круга
-        pass
-
-class Четырехугольник(Фигура):
-    def __init__(self, точка1, точка2, точка3, точка4):
-        self.точка1 = точка1
-        self.точка2 = точка2
-        self.точка3 = точка3
-        self.точка4 = точка4
-
-    def вывести(self):
-        # Реализация вывода для четырехугольника
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра четырехугольника
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади четырехугольника
-        pass
-
-class Точка:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-class Треугольник(Фигура):
-    def __init__(self, точка1, точка2, точка3):
-        self.точка1 = точка1
-        self.точка2 = точка2
-        self.точка3 = точка3
-
-    def вывести(self):
-        # Реализация вывода для треугольника
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра треугольника
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади треугольника
-        pass
-
-class Круг(Фигура):
-    def __init__(self, центр, радиус):
-        self.центр = центр
-        self.радиус = радиус
-
-    def вывести(self):
-        # Реализация вывода для круга
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра круга
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади круга
-        pass
-
-class Четырехугольник(Фигура):
-    def __init__(self, точка1, точка2, точка3, точка4):
-        self.точка1 = точка1
-        self.точка2 = точка2
-        self.точка3 = точка3
-        self.точка4 = точка4
-
-    def вывести(self):
-        # Реализация вывода для четырехугольника
-        pass
-
-    def рассчитать_периметр(self):
-        # Реализация расчета периметра четырехугольника
-        pass
-
-    def рассчитать_площадь(self):
-        # Реализация расчета площади четырехугольника
-        pass
-
 from abc import ABC, abstractmethod
+import math
+from operator import itemgetter
+from prettytable import PrettyTable
 
-class Фигура(ABC):
+class Figure(ABC):
     @abstractmethod
-    def вывести(self):
+    def calculate_area(self):
         pass
-
+    
     @abstractmethod
-    def рассчитать_периметр(self):
+    def calculate_perimeter(self):
         pass
-
+    
     @abstractmethod
-    def рассчитать_площадь(self):
+    def display(self):
         pass
 
-# Спросим у пользователя, сколько фигур он хочет создать
-количество_фигур = int(input("Сколько фигур вы хотите создать? "))
 
-# Создадим пустой список для хранения фигур
-список_фигур = []
-
-# Создадим фигуры и добавим их в список
-for i in range(количество_фигур):
-    print(f"Фигура {i + 1}:")
-    тип_фигуры = input("Введите тип фигуры (Треугольник, Круг, Четырехугольник): ")
-
-    if тип_фигуры == "Треугольник":
-        # Здесь введите данные для треугольника, создайте объект треугольника и добавьте его в список
-        pass
-    elif тип_фигуры == "Круг":
-        # Здесь введите данные для круга, создайте объект круга и добавьте его в список
-        pass
-    elif тип_фигуры == "Четырехугольник":
-        # Здесь введите данные для четырехугольника, создайте объект четырехугольника и добавьте его в список
-        pass
-    else:
-        print("Неверный тип фигуры. Пожалуйста, выберите Треугольник, Круг или Четырехугольник.")
-
-# Рассчитаем площадь для каждой фигуры и добавим ее в список
-for фигура in список_фигур:
-    площадь = фигура.рассчитать_площадь()
-    фигура.площадь = площадь
-
-# Выведем список фигур вместе с их площадью
-for фигура in список_фигур:
-    print(f"{фигура.__class__.__name__}: Площадь - {фигура.площадь}")
+class Triangle(Figure):
+    def __init__(self, base, height):
+        self.base = base
+        self.height = height
+    
+    def calculate_area(self):
+        return 0.5 * self.base * self.height
+    
+    def calculate_perimeter(self):
+        return self.base + 2 * math.sqrt((self.base / 2)**2 + self.height**2)
+    
+    def display(self):
+        print("Треугольник:")
+        print(f"Основание: {self.base}")
+        print(f"Высота: {self.height}")
+        print(f"Периметр: {self.calculate_perimeter()}")
+        print(f"Площадь: {self.calculate_area()}")
+        print()
 
 
+class Circle(Figure):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def calculate_area(self):
+        return math.pi * self.radius**2
+    
+    def calculate_perimeter(self):
+        return 2 * math.pi * self.radius
+    
+    def display(self):
+        print("Круг:")
+        print(f"Радиус: {self.radius}")
+        print(f"Длина окружности: {self.calculate_perimeter()}")
+        print(f"Площадь: {self.calculate_area()}")
+        print()
 
-# Отсортируем фигуры по площади
-отсортированные_фигуры = sorted(список_фигур, key=lambda фигура: фигура.площадь)
 
-# Выведем отсортированные фигуры
-for фигура in отсортированные_фигуры:
-    print(f"{фигура.__class__.__name__}: Площадь - {фигура.площадь}")
+class Quadrilateral(Figure):
+    def __init__(self, side1, side2):
+        self.side1 = side1
+        self.side2 = side2
+    
+    def calculate_area(self):
+        return self.side1 * self.side2
+    
+    def calculate_perimeter(self):
+        return 2 * (self.side1 + self.side2)
+    
+    def display(self):
+        print("Четырехугольник:")
+        print(f"Сторона 1: {self.side1}")
+        print(f"Сторона 2: {self.side2}")
+        print(f"Периметр: {self.calculate_perimeter()}")
+        print(f"Площадь: {self.calculate_area()}")
+        print()
 
+
+num_figures = int(input("Сколько фигур нужно? "))
+
+figures = []
+for _ in range(num_figures):
+    figure_type = input("Введите тип фигуры (1 - треугольник, 2 - круг, 3 - четырехугольник): ")
+    
+    if figure_type == "1":
+        base = float(input("Введите основание треугольника: "))
+        height = float(input("Введите высоту треугольника: "))
+        figure = Triangle(base, height)
+        figures.append(figure)
+        Triangle.display(figure)
+    elif figure_type == "2":
+        radius = float(input("Введите радиус круга: "))
+        figure = Circle(radius)
+        figures.append(figure)
+        Circle.display(figure)
+    elif figure_type == "3":
+        side1 = float(input("Введите длину первой стороны четырехугольника: "))
+        side2 = float(input("Введите длину второй стороны четырехугольника: "))
+        figure = Quadrilateral(side1, side2)
+        Quadrilateral.display(figure)
+
+# Сортировка фигур по площади
+figures.sort(key=lambda x: x.area())
+
+# Создание таблицы и добавление заголовка
+table = PrettyTable()
+table.field_names = ["Фигура", "Площадь"]
+
+# Добавление строк в таблицу
+for figure in figures:
+    table.add_row([type(figure).__name__, figure.area()])
+
+# Вывод таблицы
+print(table)
