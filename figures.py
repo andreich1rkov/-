@@ -86,9 +86,18 @@ while True:
         print("Введите положительное целое число")
 figures = []
 for _ in range(num_figures):
-    figure_type = input("Введите тип фигуры (1 - треугольник, 2 - круг, 3 - четырехугольник): ")
+    while True:
+        try:
+            figure_type = int(input("Введите тип фигуры (1 - треугольник, 2 - круг, 3 - четырехугольник): "))
+            if figure_type == 1 or figure_type == 2 or figure_type == 3:
+                pass
+            else:
+                raise error
+            break
+        except error:
+            print("Введите 1, 2 или 3")
     
-    if figure_type == "1":
+    if figure_type == 1:
         while True:
             try:
                 base = float(input("Введите основание треугольника: "))
@@ -102,7 +111,7 @@ for _ in range(num_figures):
                 print("Введите положительное число")
         figure = Triangle(base, height)
         figures.append(figure)
-    elif figure_type == "2":
+    elif figure_type == 2:
         while True:
             try:
                 radius = float(input("Введите радиус круга: "))
@@ -113,7 +122,7 @@ for _ in range(num_figures):
                 print("Введите положительное число")
         figure = Circle(radius)
         figures.append(figure)
-    elif figure_type == "3":
+    elif figure_type == 3:
         while True:
             try:
                 side1 = float(input("Введите длину первой стороны четырехугольника: "))
